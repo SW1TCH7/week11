@@ -4,7 +4,7 @@ const db = require('../db');
 
 router.get('/', async (req, res) => {
     try {
-    const recipequery = 'SELECT id,recipeName, imageURL, instructions FROM recipe ORDER BY RANDOM() LIMIT 1';
+    const recipequery = 'SELECT id,recipeName, imageURL, instructions FROM recipe ORDER BY RANDOM() LIMIT 1;';
     const recipeResult = await db.query(recipequery);
     const selectedRecipe = recipeResult.rows[0];
     const ingredientQuery = 'SELECT b.ingredientName FROM ingredient b INNER JOIN IngredientInRecipe c ON b.id = c.ingredientId WHERE c.recipeId = $1;';
